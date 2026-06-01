@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEXUS LMS — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+</head>
+<body>
+
+  <!-- ── Top Navbar ─────────────────────────────────────── -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">&#9776;</button>
+      <span class="nav-logo">📚</span>
+      <span class="nav-title">NEXUS <span class="nav-title-thin">LMS</span></span>
+    </div>
+    <div class="navbar-right">
+      <div class="nav-user" id="navUser">
+        <div class="user-avatar" id="userAvatar">—</div>
+        <div class="user-info">
+          <span class="user-name"  id="userName">Loading…</span>
+          <span class="role-badge" id="roleBadge">—</span>
+        </div>
+      </div>
+      <button class="btn-logout" id="logoutBtn" title="Logout">
+        <span>Logout</span> ⬩
+      </button>
+    </div>
+  </header>
+
+  <!-- ── App Body ───────────────────────────────────────── -->
+  <div class="app-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav" id="sidebarNav">
+        <!-- Populated by dashboard.js based on role -->
+      </nav>
+      <div class="sidebar-footer">
+        <span class="sidebar-footer-text">NEXUS v1.0</span>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content" id="mainContent">
+      <!-- Populated by dashboard.js when a nav item is selected -->
+      <div class="content-placeholder" id="contentPlaceholder">
+        <div class="placeholder-icon">📖</div>
+        <p class="placeholder-text">Select a section from the sidebar</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ── Toast ──────────────────────────────────────────── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ── Logout confirmation modal ─────────────────────── -->
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal-box">
+      <p class="modal-title">Leave the Library?</p>
+      <p class="modal-body">You will be signed out of your session.</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="logoutCancel">Stay</button>
+        <button class="btn-danger"    id="logoutConfirm">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

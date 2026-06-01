@@ -1,0 +1,358 @@
+/* ─── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Design Tokens ───────────────────────────────────────── */
+:root {
+  --cream:        #f5f0e8;
+  --cream-dark:   #ede5d4;
+  --parchment:    #e8dfc8;
+  --ink:          #1e1a14;
+  --ink-light:    #3d3626;
+  --brown:        #5c3d1e;
+  --brown-light:  #7a5230;
+  --green:        #2d4a2d;
+  --green-light:  #3d6b3d;
+  --gold:         #b8860b;
+  --gold-light:   #d4a017;
+  --rust:         #8b3a1a;
+  --shadow:       rgba(30, 26, 20, 0.18);
+  --radius:       4px;
+}
+
+/* ─── Body & Background ───────────────────────────────────── */
+body {
+  min-height: 100vh;
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(92, 61, 30, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(45, 74, 45, 0.25) 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%231e1a14'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%23ffffff08'/%3E%3C/svg%3E");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'EB Garamond', Georgia, serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Decorative horizontal shelf lines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 59px,
+    rgba(92, 61, 30, 0.12) 59px,
+    rgba(92, 61, 30, 0.12) 60px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Decorative Book Spines ──────────────────────────────── */
+.spines {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 90px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  padding: 0 20px;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+.spine {
+  flex-shrink: 0;
+  border-radius: 2px 2px 0 0;
+  animation: spineRise 1.2s ease both;
+}
+
+@keyframes spineRise {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ─── Card ────────────────────────────────────────────────── */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 440px;
+  background: var(--cream);
+  border-radius: var(--radius);
+  box-shadow:
+    0 2px 0 var(--gold),
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ─── Ribbon Header ───────────────────────────────────────── */
+.ribbon {
+  background: var(--green);
+  background-image: linear-gradient(135deg, var(--green) 0%, #1e3a1e 100%);
+  padding: 28px 36px 24px;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+}
+
+.ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+
+.logo-icon {
+  font-size: 36px;
+  margin-bottom: 6px;
+  display: block;
+  animation: iconDrop 0.5s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes iconDrop {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.library-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.library-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(245, 240, 232, 0.55);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* ─── Form Body ───────────────────────────────────────────── */
+.form-body {
+  padding: 32px 36px 36px;
+}
+
+.form-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-light);
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 7px;
+}
+
+/* ─── Inputs ──────────────────────────────────────────────── */
+/*
+  Fix: font-family is explicitly forced on all states including
+  [type="text"] so toggling password visibility does not
+  cause any visual shift in the text box appearance.
+*/
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 11px 42px 11px 14px;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--parchment);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  /* Prevent any browser reflow on type change */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(45, 74, 45, 0.12), inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+input::placeholder {
+  color: #b0a890;
+  font-style: italic;
+}
+
+/* ─── Password Wrapper ────────────────────────────────────── */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--brown-light);
+  padding: 2px 4px;
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  /* Keep button from affecting input layout */
+  z-index: 1;
+}
+
+.toggle-pw:hover { opacity: 1; }
+
+/* ─── Error Messages ──────────────────────────────────────── */
+.error-msg {
+  display: none;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--rust);
+  font-style: italic;
+}
+
+.error-msg.visible,
+.error-msg[style*="display: block"] {
+  display: block;
+}
+
+/* ─── Login Button ────────────────────────────────────────── */
+.btn-login {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  background: var(--green);
+  background-image: linear-gradient(135deg, var(--green) 0%, #1e3a1e 100%);
+  color: var(--cream);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(30, 58, 30, 0.35);
+  transition: background-image 0.2s, transform 0.12s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.btn-login:hover:not(:disabled) {
+  background-image: linear-gradient(135deg, var(--green-light) 0%, var(--green) 100%);
+  box-shadow: 0 6px 20px rgba(30, 58, 30, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-login:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(30, 58, 30, 0.3);
+}
+
+.btn-login:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ─── Button Spinner ──────────────────────────────────────── */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(245, 240, 232, 0.3);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Card Footer ─────────────────────────────────────────── */
+.card-footer {
+  padding: 14px 36px 20px;
+  border-top: 1px solid var(--parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-ornament {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+
+.footer-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #9a8f7a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── Toast Notification ──────────────────────────────────── */
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: var(--ink);
+  color: var(--cream);
+  border-left: 3px solid var(--gold);
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: 'EB Garamond', serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  transform: translateX(110%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 300px;
+}
+
+.toast.show        { transform: translateX(0); }
+.toast.toast-error   { border-left-color: var(--rust); }
+.toast.toast-success { border-left-color: var(--green-light); }

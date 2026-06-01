@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEXUS LMS — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- Decorative book spines along the bottom -->
+  <div class="spines" id="spines"></div>
+
+  <div class="card">
+
+    <!-- Header ribbon -->
+    <div class="ribbon">
+      <span class="logo-icon">📚</span>
+      <div class="library-name">NEXUS LMS</div>
+      <div class="library-sub">Library Management System</div>
+    </div>
+
+    <!-- Login form -->
+    <div class="form-body">
+      <p class="form-heading">Sign in to your account</p>
+
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@library.edu" autocomplete="username"/>
+        <span class="error-msg" id="emailError">Please enter a valid email address.</span>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"/>
+          <button class="toggle-pw" type="button" id="togglePw" title="Show/hide password">👁</button>
+        </div>
+        <span class="error-msg" id="passwordError">Password cannot be empty.</span>
+      </div>
+
+      <span class="error-msg" id="loginError"></span>
+
+      <button class="btn-login" id="loginBtn" type="button">Enter the Library</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="footer-ornament">❧</span>
+      <span class="footer-text">NEXUS &bull; Academic Library System &bull; v1.0</span>
+      <span class="footer-ornament">❧</span>
+    </div>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
